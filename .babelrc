@@ -1,10 +1,10 @@
 {
-  "preset": [
-    "env", {
-      
-    }
+  "presets": [
+    ["react-app"],
+    ["env"]
   ],
   "plugins": [
-    "transform-runtime"
+    "transform-runtime",
+    "transform-class-properties"
   ]
 }

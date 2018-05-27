@@ -1,9 +1,15 @@
 
 const path = require('path')
-const autoprefixer = require('autoprefixer')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const WebpackDevServer = require('webpack-dev-server')
+process.env.NODE_ENV = 'development'
 module.exports = {
+  mode: 'development',
   devtool: 'cheap-module-source-map',
-  entry: [path.join(__dirname, './src')],
+  entry: [
+    path.join(__dirname, './src')
+  ],
   output: {
     path: path.join(__dirname, '/dist'),
     chunkFilename: '[hash:8].chunk.js',
@@ -22,12 +28,8 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        use: ['babel-loader', {
-          options: {
-            cacheDirectory: true
-          }
-        }],
-        include: path.join(__dirname, './src'),
+        use: ['babel-loader'],
+        include: path.join(__dirname, 'src'),
         exclude: /node_modules/
       },
       {
@@ -37,72 +39,35 @@ module.exports = {
           'css-loader',
           'postcss-loader'
         ],
-        include: path.join(__dirname, './src')
+        include: path.join(__dirname, 'src')
       },
 
       {
-
-        oneOf: [
-          {
-            test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.svg$/],
-            loader: require.resolve('url-loader'),
-            options: {
-              limit: 10000,
-              name: 'static/media/[name].[hash:8].[ext]'
-            }
-          }
+        // oneOf: [
           // {
-          //   test: /\.(js|jsx|mjs)$/,
-          //   include: path.join(__dirname, 'src'),
-          //   loader: require.resolve('babel-loader'),
-          //   options: {
-          //       // @remove-on-eject-begin
-          //     babelrc: false,
-          //     presets: [require.resolve('babel-preset-react-app')],
-          //     cacheDirectory: true
-          //   }
-          // },
-          // {
-          //   test: /\.css$/,
-          //   use: [
-          //     require.resolve('style-loader'),
-          //     {
-          //       loader: require.resolve('css-loader'),
-          //       options: {
-          //         importLoaders: 1
-          //       }
-          //     },
-          //     {
-          //       loader: require.resolve('postcss-loader'),
-          //       options: {
-          //         ident: 'postcss',
-          //         plugins: () => [
-          //           require('postcss-flexbugs-fixes'),
-          //           autoprefixer({
-          //             browsers: [
-          //               '>1%',
-          //               'last 4 versions',
-          //               'Firefox ESR',
-          //               'not ie < 9' // React doesn't support IE8 anyway
-          //             ],
-          //             flexbox: 'no-2009'
-          //           })
-          //         ]
-          //       }
-          //     }
-          //   ]
-          // },
-          // {
-          //   exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/],
-          //   loader: require.resolve('file-loader'),
-          //   options: {
-          //     name: 'static/media/[name].[hash:8].[ext]'
-          //   }
-          // }
-        ]
+        // test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.svg$/],
+        test: /\.svg$/,
+        loader: 'file-loader',
+        options: {
+          limit: 10000,
+          name: 'static/media/[name].[hash:8].[ext]'
+        }
       }
     ]
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      }
+    }),
+    new HtmlWebpackPlugin({
+      inject: true,
+      DEV: true,
+      publicPath: './public',
+      template: path.join(__dirname, '/public/index.html')
+    })
+  ],
   optimization: {
     splitChunks: {
       cacheGroups: {
@@ -114,4 +79,18 @@ module.exports = {
       }
     }
   }
+  // devServer: {
+  //   inline: true,
+  //   hot: true,
+  //   contentBase: path.join(__dirname, '/'),
+  //   stats: {
+  //     timings: true,
+  //     assets: false,
+  //     modules: false,
+  //     chunks: false
+  //   },
+  //   headers: {
+  //     'Access-Control-Allow-Origin': '*'
+  //   }
+  // }
 }
