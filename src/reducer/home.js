@@ -1,6 +1,10 @@
 
-export default function home (state) {
+export default function home (state, action) {
+  switch (action.type) {
+    case 'HOME_CLICK':
+      console.log('home reducer', state, action)
+  }
   return {
-    name: '测试'
+    name: action.payload
   }
 }

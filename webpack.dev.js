@@ -80,19 +80,20 @@ module.exports = {
         }
       }
     }
+  },
+  devServer: {
+    inline: true,
+    hot: true,
+    contentBase: path.join(__dirname, '/'),
+    stats: {
+      timings: true,
+      assets: false,
+      modules: false,
+      chunks: false
+    },
+    historyApiFallback: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    }
   }
-  // devServer: {
-  //   inline: true,
-  //   hot: true,
-  //   contentBase: path.join(__dirname, '/'),
-  //   stats: {
-  //     timings: true,
-  //     assets: false,
-  //     modules: false,
-  //     chunks: false
-  //   },
-  //   headers: {
-  //     'Access-Control-Allow-Origin': '*'
-  //   }
-  // }
 }
