@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import actions from '../actions/home'
+import actions from './actions'
 const name = {
   a: 1,
   b: 2,
 }
+
+
+
 class App extends Component {
   constructor (props) {
     super(props)
@@ -13,34 +16,35 @@ class App extends Component {
       
     }
   }
+
   state = {
     name: '测试'
   }
   onClickTest = (a) => {
     a = {...this.state}
-    alert(JSON.stringify(a))
-    this.props.actions.homeClick()
+    this.props.actions.homeClick(this.props.number || 0)
   }
   render () {
     return (
       <div className='App'>
         <header className='App-header'>
           <h1 className='App-title'>Welcome to Home</h1>
-          <h1 className='App-title'>{this.props.name}</h1>
+          <h1 className='App-title'>点击{this.props.number}</h1>
         </header>
-        <p className='App-intro'>
-          <button onClick={this.onClickTest}>测试</button>
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h1 onClick={this.onClickTest}>点击</h1>
         {this.props.children}
       </div>
     )
   }
 }
 
+App.defaultProps = {
+  number: 1
+}
+
 const mapStateToProps = state => {
   return {
-    name: state.home.name
+    number: state.home.number || 1
   }
 }
 

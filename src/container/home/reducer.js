@@ -5,6 +5,6 @@ export default function home (state, action) {
       console.log('home reducer', state, action)
   }
   return {
-    name: action.payload
+    number: action.payload + 1
   }
 }

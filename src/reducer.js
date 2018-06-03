@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import home from './reducer/home'
+import home from './container/home/reducer'
 import { routerReducer } from 'react-router-redux'
 
 // import { routerReducer } from 'react-router-redux'

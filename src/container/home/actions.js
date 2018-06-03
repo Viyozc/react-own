@@ -1,9 +1,9 @@
 export default {
-  homeClick () {
+  homeClick (number) {
     console.log('home click action')
     return {
       type: 'HOME_CLICK',
-      payload: 'action'
+      payload: number
     }
   }
 }
