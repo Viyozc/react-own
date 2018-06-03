@@ -21,6 +21,8 @@ module.exports = {
       'babel-runtime': path.dirname(
         require.resolve('babel-runtime/package.json')
       )
+      // 'react': './library/index',
+      // 'react-dom': './library/react-dom.js'
     },
     extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx']
   },
