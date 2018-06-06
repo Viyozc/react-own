@@ -4,12 +4,11 @@ import logo from './resource/logo.svg'
 import './App.css'
 
 class App extends Component {
-  state = {
-    name: '测试'
-  }
+  // state = {
+  //   name: '测试'
+  // }
   onClickTest = (a) => {
     a = {...this.state}
-    console.log(this)
     this.props.history.push({
       pathname: '/home',
       search: '?name=name'

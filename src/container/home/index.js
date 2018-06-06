@@ -2,13 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import actions from './actions'
-const name = {
-  a: 1,
-  b: 2,
-}
+import redux from 'redux'
 
-
-
+console.log(redux)
+console.log(bindActionCreators)
 class App extends Component {
   constructor (props) {
     super(props)
@@ -22,6 +19,8 @@ class App extends Component {
   }
   onClickTest = (a) => {
     a = {...this.state}
+    console.log(this)
+    debugger
     this.props.actions.homeClick(this.props.number || 0)
   }
   render () {
@@ -44,7 +43,8 @@ App.defaultProps = {
 
 const mapStateToProps = state => {
   return {
-    number: state.home.number || 1
+    number: state.home || 1,
+    routing: state.routing,
   }
 }
 
@@ -54,3 +54,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App)
+// export default App

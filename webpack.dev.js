@@ -20,7 +20,9 @@ module.exports = {
     alias: {
       'babel-runtime': path.dirname(
         require.resolve('babel-runtime/package.json')
-      )
+      ),
+      'react-redux': path.join(__dirname, './library/react-redux'),
+      'redux': path.join(__dirname, './library/redux.js')
       // 'react': './library/index',
       // 'react-dom': './library/react-dom.js'
     },
