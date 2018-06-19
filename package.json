@@ -11,7 +11,9 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
     "react-scripts": "^1.1.4",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "ts-loader": "^4.4.1",
+    "typescript": "^2.9.2"
   },
   "scripts": {
     "dev": "webpack-dev-server --config webpack.dev.js --inline --hot",
@@ -21,6 +23,9 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "@types/react": "^16.4.0",
+    "@types/react-dom": "^16.0.6",
+    "@types/redux": "^3.6.0",
     "autoprefixer": "^8.5.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",

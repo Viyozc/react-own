@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 import ReactDOM from 'react-dom'
 import createHistory from 'history/createBrowserHistory'
 import { createStore, applyMiddleware } from 'redux'
@@ -11,17 +11,18 @@ import Home from './container/home'
 import reducer from './reducer'
 // import history from './router'
 // import registerServiceWorker from './registerServiceWorker';
-const logMiddleware = ({getState, dispatch}) => next => action => {
+const logMiddleware = ({getState: any, dispatch: any}) => next => action => {
   const pre = getState()
   console.log('%c pre state', 'color: #f00; font-size: 14px', pre)
   next(action)
   const nextState = getState()
   console.log('%c next state', 'color: #f00; font-size: 14px', nextState)
 }
+console.log(111)
 const store = applyMiddleware(logMiddleware)(createStore)(reducer)
 const history = createHistory()
-const Test = (props) =>
-  <Provider store={store}>
+const Main = (props) => 
+<Provider store={store}>
     <Router history={history} location={history}>
       <Switch>
         <Route exact component={App} path='/' />
@@ -30,4 +31,4 @@ const Test = (props) =>
     </Router>
   </Provider>
 
-ReactDOM.render(<Test />, document.getElementById('root'))
+ReactDOM.render(<Main />, document.getElementById('root'))

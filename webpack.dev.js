@@ -20,19 +20,19 @@ module.exports = {
     alias: {
       'babel-runtime': path.dirname(
         require.resolve('babel-runtime/package.json')
-      ),
-      'react-redux': path.join(__dirname, './library/react-redux'),
-      'redux': path.join(__dirname, './library/redux.js')
+      )
+      // 'react-redux': path.join(__dirname, './library/react-redux'),
+      // 'redux': path.join(__dirname, './library/redux.js')
       // 'react': './library/index',
       // 'react-dom': './library/react-dom.js'
     },
-    extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx']
+    extensions: ['.web.js', '.mjs', '.js', '.json', '.tsc', '.ts', '.web.jsx', '.jsx']
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        use: ['babel-loader'],
+        test: /\.(js|ts)$/,
+        use: ['babel-loader', 'ts-loader'],
         include: path.join(__dirname, 'src'),
         exclude: /node_modules/
       },
